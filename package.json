@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://ju1ceboy.github.io/news-hub",
+  "homepage": "https://ju1ceboy-ops.github.io/news-hub",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
