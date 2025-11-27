@@ -6,7 +6,7 @@
   "homepage": "https://ju1ceboy-ops.github.io/news-hub",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && touch dist/.nojekyll",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
