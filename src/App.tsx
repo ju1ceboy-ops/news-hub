@@ -5,7 +5,7 @@ import styles from "./styles/Main.module.scss";
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <Header/>
       <div className={styles.mainContent}>
         <Routes>
