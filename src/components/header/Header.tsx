@@ -1,54 +1,68 @@
 import styles from "./Header.module.scss";
 import { useEffect, useState } from "react";
-// import style from "../../styles/container.module.scss";
-
+import { Link } from "react-router-dom";
+import { UI_CONFIG } from "../../constants";
 
 export function Header() {
-    const [isActive, setActive] = useState(false)
+    const [isActive, setActive] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     const toggleClass = () => {
         setActive(!isActive);
-      };
-      
-      const [isScrolled, setIsScrolled] = useState(false);
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         const handleScroll = () => {
-          setIsScrolled(window.pageYOffset > 70);
+            setIsScrolled(window.pageYOffset > UI_CONFIG.HEADER_SCROLL_THRESHOLD);
         };
-    
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-      }, []);
+    }, []);
 
     return (
         <div className={`${styles.header} ${isScrolled ? styles.header__scroll : ''}`}>
             <div className={styles.container}>
                 <div 
-                className={`${styles.burger} ${isActive ? styles.burger__active : ''}`} 
-                onClick={() => toggleClass()}>
+                    className={`${styles.burger} ${isActive ? styles.burger__active : ''}`} 
+                    onClick={toggleClass}
+                >
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
                 <div
-                className={`${styles.menu} ${isActive ? styles.menu__active : ''}`}
-                onClick={() => toggleClass()}
+                    className={`${styles.menu} ${isActive ? styles.menu__active : ''}`}
+                    onClick={toggleClass}
                 >
                     <ul className={styles.menu__navigation}>
-                        <li className={styles.menu__navigation_li}><a href="/science">SCIENCE</a></li>
-                        <li className={styles.menu__navigation_li}><a href="/general">GENERAL</a></li>
-                        <li className={styles.menu__navigation_li}><a href="/entertaiment">ENTERTAINMENT</a></li>
-                        <li className={styles.menu__navigation_li}><a href="/technology">TECHNOLOGY</a></li>
-                        <li className={styles.menu__navigation_li}><a href="/business">BUSINESS</a></li>
-                        <li className={styles.menu__navigation_li}><a href="/health">HEALTH</a></li>
-                        <li className={styles.menu__navigation_li}><a href="/sports">SPORTS</a></li>
+                        <li className={styles.menu__navigation_li}>
+                            <Link to="/science">SCIENCE</Link>
+                        </li>
+                        <li className={styles.menu__navigation_li}>
+                            <Link to="/general">GENERAL</Link>
+                        </li>
+                        <li className={styles.menu__navigation_li}>
+                            <Link to="/entertaiment">ENTERTAINMENT</Link>
+                        </li>
+                        <li className={styles.menu__navigation_li}>
+                            <Link to="/technology">TECHNOLOGY</Link>
+                        </li>
+                        <li className={styles.menu__navigation_li}>
+                            <Link to="/business">BUSINESS</Link>
+                        </li>
+                        <li className={styles.menu__navigation_li}>
+                            <Link to="/health">HEALTH</Link>
+                        </li>
+                        <li className={styles.menu__navigation_li}>
+                            <Link to="/sports">SPORTS</Link>
+                        </li>
                     </ul>
                 </div>
-                <a className={styles.logo__wrapper} href="/news-hub">
+                <Link className={styles.logo__wrapper} to="/">
                     <span className={styles.logo__title}>NEWS PUB <span className={styles.logo__small}>by Ju1ceBoy</span></span>
-                </a>
+                </Link>
             </div>
         </div>
-    )
+    );
 }
