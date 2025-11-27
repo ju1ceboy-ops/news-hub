@@ -50,7 +50,7 @@ export const useVisibleArticles = (articles: Article[] | undefined, visibleCount
  * Хук для управления счетчиком видимых статей
  */
 export const useArticleCounter = (totalArticles: number) => {
-  const [visibleCount, setVisibleCount] = useState(UI_CONFIG.INITIAL_ARTICLES_COUNT);
+  const [visibleCount, setVisibleCount] = useState<number>(UI_CONFIG.INITIAL_ARTICLES_COUNT);
 
   const loadMore = () => {
     setVisibleCount(prev => Math.min(prev + UI_CONFIG.ARTICLES_INCREMENT, totalArticles));
